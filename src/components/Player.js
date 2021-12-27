@@ -12,7 +12,7 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
     }
 
     const timeUpdateHandler = (e) => {
-        setSongInfo({currentTime: e.target.currentTime, duration: e.target.duration})
+        setSongInfo({...songInfo, currentTime: e.target.currentTime, duration: e.target.duration})
     }
 
     const getTime = (time) => {
@@ -21,16 +21,21 @@ const Player = ({ currentSong, isPlaying, setIsPlaying }) => {
         );
     }
 
+    const dragHandler = (e) => {
+        audioRef.current.currentTime = e.target.value;
+        setSongInfo({...songInfo, currentTime: e.target.value })
+    }
+
     const [songInfo, setSongInfo] = useState({
-        currentTime: null,
-        duration: null,
+        currentTime: 0,
+        duration: 0,
     })
 
     return ( 
         <div className="player">
             <div className="time-control">
                 <p>{getTime(songInfo.currentTime)}</p>
-                <input type="range" />
+                <input min={0} max={songInfo.duration} value={songInfo.currentTime} onChange={dragHandler} type="range" />
                 <p>{getTime(songInfo.duration)}</p>
             </div>
             <div className="play-control">
