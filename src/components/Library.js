@@ -1,6 +1,10 @@
 import LibrarySong from "./LibrarySong";
 
+<<<<<<< HEAD
 const Library = ( {songs, setSongs} ) => {
+=======
+const Library = ( {songs} ) => {
+>>>>>>> 8c6cb7d76c86b8909598533b2a7948c3afc556ba
 
     
     return ( 
