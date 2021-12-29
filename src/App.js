@@ -15,13 +15,8 @@ function App() {
   return (
     <div className="App">
       <Song currentSong={currentSong} />
-<<<<<<< HEAD
       <Player isPlaying={isPlaying} setIsPlaying={setIsPlaying} currentSong={currentSong} setCurrentSong={setCurrentSong} />
       <Library songs={songs} setSongs={setSongs} />
-=======
-      <Player isPlaying={isPlaying} setIsPlaying={setIsPlaying} currentSong={currentSong} />
-      <Library songs={songs} />
->>>>>>> 8c6cb7d76c86b8909598533b2a7948c3afc556ba
     </div>
   );
 }
