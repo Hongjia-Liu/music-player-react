@@ -1,8 +1,10 @@
 import "./styles/app.scss"
 import Song from "./components/Song";
 import Player from "./components/Player";
+import Library from "./components/Library";
 import chillhop from "./data"
 import { useState } from "react";
+
 
 function App() {
 
@@ -13,7 +15,8 @@ function App() {
   return (
     <div className="App">
       <Song currentSong={currentSong} />
-      <Player isPlaying={isPlaying} setIsPlaying={setIsPlaying} currentSong={currentSong} />
+      <Player isPlaying={isPlaying} setIsPlaying={setIsPlaying} currentSong={currentSong} setCurrentSong={setCurrentSong} />
+      <Library songs={songs} setSongs={setSongs} />
     </div>
   );
 }
