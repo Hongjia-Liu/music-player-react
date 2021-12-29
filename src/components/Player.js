@@ -26,6 +26,12 @@ const Player = ({ currentSong, setCurrentSong, isPlaying, setIsPlaying }) => {
         setSongInfo({...songInfo, currentTime: e.target.value })
     }
 
+    const autoPlayHandler = () => {
+        if(isPlaying) {
+            audioRef.current.play();
+        }
+    }
+
     const [songInfo, setSongInfo] = useState({
         currentTime: 0,
         duration: 0,
@@ -35,15 +41,15 @@ const Player = ({ currentSong, setCurrentSong, isPlaying, setIsPlaying }) => {
         <div className="player">
             <div className="time-control">
                 <p>{getTime(songInfo.currentTime)}</p>
-                <input min={0} max={songInfo.duration} value={songInfo.currentTime} onChange={dragHandler} type="range" />
-                <p>{getTime(songInfo.duration)}</p>
+                <input min={0} max={songInfo.duration || 0} value={songInfo.currentTime} onChange={dragHandler} type="range" />
+                <p>{getTime(songInfo.duration || 0)}</p>
             </div>
             <div className="play-control">
                 <FontAwesomeIcon className="skip-back" size="2x" icon={faAngleLeft} />
                 <FontAwesomeIcon onClick={playSongHandler} className="play" size="2x" icon={isPlaying? faPause : faPlay} />
                 <FontAwesomeIcon className="skip-forward" size="2x" icon={faAngleRight} />
             </div>
-            <audio onTimeUpdate={timeUpdateHandler} onLoadedMetadata={timeUpdateHandler} ref={audioRef} src={currentSong.audio}></audio>
+            <audio onLoadedData={autoPlayHandler} onTimeUpdate={timeUpdateHandler} onLoadedMetadata={timeUpdateHandler} ref={audioRef} src={currentSong.audio}></audio>
         </div> 
      );
 }
